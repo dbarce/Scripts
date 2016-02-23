@@ -3,8 +3,11 @@ HGF=[2 14 16 19 21];
 tet=[5 10 13 17 18];
 zero=[1 3 8 15 20];
 
-
-
+% HGF_tet=[3 7 13 15];
+% HGF=[1 5 9 11];
+% tet=[12 16 8];
+% zero=[2 6 10 14];
+% 
 % % % % % % %%average data 
 % % -tet
 %HGF+tet
@@ -41,7 +44,7 @@ levels_noise=[(mean(min(profvar_HGF_tet))) max(max(profvar_HGF_tet))];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%plot the means 
 figure;
-subplot(2,2,1);
+subplot(2,2,1,'Position',[.13-.08 .5838 .3347 .3412]);
 imagesc(profmean_zero);
 caxis(levels);
 title('-tet -HGF','FontSize',14);hold on
@@ -54,7 +57,7 @@ clear loc_fit;clear loc_val;clear m;clear loc
 
 
 
-subplot(2,2,2);
+subplot(2,2,2,'Position',[.57-.08 .5838 .3347 .3412]);
 imagesc(profmean_tet);
 caxis(levels);
 title('+tet -HGF','FontSize',14);hold on
@@ -65,7 +68,7 @@ title('+tet -HGF','FontSize',14);hold on
     plot(loc_val,'-','Color','g');
 clear loc_fit;clear loc_val;clear m;clear loc
 
-subplot(2,2,3);
+subplot(2,2,3,'Position',[.13-.08 .11 .3347 .3412]);
 imagesc(profmean_HGF);
 caxis(levels);
 title('-tet +HGF','FontSize',14);hold on
@@ -76,7 +79,7 @@ title('-tet +HGF','FontSize',14);hold on
 plot(loc_val,'-','Color','g');
 clear loc_fit;clear loc_val;clear m;clear loc
 
-subplot(2,2,4);
+subplot(2,2,4,'Position',[.5703-.08 .11 .3347 .3412]);
 imagesc(profmean_HGF_tet);
 caxis(levels);
 title('+tet +HGF','FontSize',14);hold on
@@ -87,10 +90,14 @@ title('+tet +HGF','FontSize',14);hold on
     plot(loc_val,'-','Color','g');
 clear loc_fit;clear loc_val;clear m;clear loc
 
+hp4 = [.5703-.08 .11 .3347 .3412];
+% break
+colorbar('Position', [hp4(1)+hp4(3)+0.03  hp4(2)  0.05  hp4(2)+hp4(3)*2.1])
+
 
 %%%%%%%%%%%%%%%%%%%%%%%plot variance
 figure;
-subplot(2,2,1);
+subplot(2,2,1,'Position',[.13-.08 .5838 .3347 .3412]);
 imagesc(profvar_zero);
 caxis(levels_noise);
 title('-tet -HGF','FontSize',14);hold on
@@ -103,7 +110,7 @@ clear loc_fit;clear loc_val;clear m;clear loc
 
 
 
-subplot(2,2,2);
+subplot(2,2,2,'Position',[.57-.08 .5838 .3347 .3412]);
 imagesc(profvar_tet);
 caxis(levels_noise);
 title('+tet -HGF','FontSize',14);hold on
@@ -114,7 +121,7 @@ title('+tet -HGF','FontSize',14);hold on
 %     plot(loc_val,'-','Color','g');
 clear loc_fit;clear loc_val;clear m;clear loc
 
-subplot(2,2,3);
+subplot(2,2,3,'Position',[.13-.08 .11 .3347 .3412]);
 imagesc(profvar_HGF);
 caxis(levels_noise);
 title('-tet +HGF','FontSize',14);hold on
@@ -125,7 +132,7 @@ title('-tet +HGF','FontSize',14);hold on
 % plot(loc_val,'-','Color','g');
 clear loc_fit;clear loc_val;clear m;clear loc
 
-subplot(2,2,4);
+subplot(2,2,4,'Position',[.5703-.08 .11 .3347 .3412]);
 imagesc(profvar_HGF_tet);
 caxis(levels_noise);
 title('+tet +HGF','FontSize',14);hold on
@@ -136,7 +143,10 @@ title('+tet +HGF','FontSize',14);hold on
 %     plot(loc_val,'-','Color','g');
 clear loc_fit;clear loc_val;clear m;clear loc
     
-    
+hp4 = [.5703-.08 .11 .3347 .3412];
+% break
+colorbar('Position', [hp4(1)+hp4(3)+0.03  hp4(2)  0.05  hp4(2)+hp4(3)*2.1])
+
     
     
     
@@ -159,7 +169,7 @@ clear loc_fit;clear loc_val;clear m;clear loc
 
 %%%%%%%PLOTS
 figure;
-subplot(2,2,1);
+subplot(2,2,1,'Position',[.13-.08 .5838 .3347 .3412]);
     contourf(profmean_zero_res(2:25,2:25));
     title('-tet -HGF','FontSize',14);hold on
     quiver(-FX_zero,-FY_zero,1.5,'LineWidth',1);
@@ -167,7 +177,7 @@ subplot(2,2,1);
     caxis(levels)
     set(gca,'YDir','reverse');
 
-subplot(2,2,2);
+subplot(2,2,2,'Position',[.57-.08 .5838 .3347 .3412]);
     contourf(profmean_tet_res(2:25,2:25));
     title('+tet -HGF','FontSize',14);hold on
     quiver(-FX_tet,-FY_tet,1.5);
@@ -175,7 +185,7 @@ subplot(2,2,2);
     caxis(levels)
     set(gca,'YDir','reverse');
 
-subplot(2,2,3);
+subplot(2,2,3,'Position',[.13-.08 .11 .3347 .3412]);
     contourf(profmean_HGF_res(2:25,2:25));
     title('-tet +HGF','FontSize',14);hold on
     quiver(-FX_HGF,-FY_HGF,1.5);
@@ -183,14 +193,18 @@ subplot(2,2,3);
     caxis(levels)
     set(gca,'YDir','reverse');
 
-subplot(2,2,4);
+subplot(2,2,4,'Position',[.5703-.08 .11 .3347 .3412]);
     contourf(profmean_HGF_tet_res(2:25,2:25));
     title('+tet +HGF','FontSize',14);hold on
     quiver(-FX_HGF_tet,-FY_HGF_tet,1.5);
     colormap(hot);
     caxis(levels)
     set(gca,'YDir','reverse');
- 
+ hp4 = [.5703-.08 .11 .3347 .3412];
+% break
+colorbar('Position', [hp4(1)+hp4(3)+0.03  hp4(2)  0.05  hp4(2)+hp4(3)*2.1])
+
+
  break    
     
     
