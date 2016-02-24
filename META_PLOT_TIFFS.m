@@ -1,7 +1,7 @@
-%%RUN THIS PART TO GET DATS
+% %%RUN THIS PART TO GET DATS
 % direc='zBestFocus';
 % 
-% for iiii=1:10
+% for iiii=1:14
 %  cd(direc);
 % clear profi;kk=1;
 % try
@@ -134,22 +134,27 @@ tit=strsplit(matlist(iii).name,'_');
 title(char(tit(2)));
 % pause
 end
-
+GFPmean=zeros(times);
+TOMmean=zeros(times);
 for jjj=1:1:times
  figure(1)
 subplot(colplots(2),colplots(1),iii);
 hold on
- GFPmean=(mean(log2(gnorm2(:,jjj))));
- TOMmean=(mean(log2(tomnorm2(:,jjj))));
- GFPstd=(std(log2(gnorm2(:,jjj))));
- TOMstd=(std(log2(tomnorm2(:,jjj))));
+ GFPmean_gnorm=(mean(log2(gnorm2(:,jjj))));
+ TOMmean_tomnorm=(mean(log2(tomnorm2(:,jjj))));
+ GFPstd_gnorm=(std(log2(gnorm2(:,jjj))));
+ TOMstd_tomnorm=(std(log2(tomnorm2(:,jjj))));
 
-  scatter(GFPmean,TOMmean,150,cc(jjj,:),'filled','o');
+  scatter(GFPmean_gnorm,TOMmean_tomnorm,150,cc(jjj,:),'filled','o');
   
-  plot([GFPmean-GFPstd GFPmean+GFPstd],[TOMmean TOMmean],'g','LineWidth',5);
-  plot([GFPmean GFPmean],[TOMmean-TOMstd TOMmean+TOMstd],'r','LineWidth',5);
+  plot([GFPmean_gnorm-GFPstd_gnorm GFPmean_gnorm+GFPstd_gnorm],[TOMmean_tomnorm TOMmean_tomnorm],'g','LineWidth',5);
+  plot([GFPmean_gnorm GFPmean_gnorm],[TOMmean_tomnorm-TOMstd_tomnorm TOMmean_tomnorm+TOMstd_tomnorm],'r','LineWidth',5);
 xlabel('GFP')
 ylabel('TOM')
+
+GFPmean(jjj)=(mean(nonzeros(profi(:,jjj,2))));
+TOMmean(jjj)=(mean(nonzeros(profi(:,jjj,5))));
+
 end
 axis([-2 5 -2 5])
 %   uistack(p1,'bottom');
@@ -162,8 +167,8 @@ axis([-2 5 -2 5])
 figure(2)
 h_mean_GFP(iii)=subplot(colplots(2),colplots(1),iii);
 % h_mean_GFP(iii)
-plot(mean(profi(:,:,2)))
- axis([0 25 500 5000])
+plot(GFPmean)
+ axis([0 25 0 3000])
  xlabel('Time')
 ylabel('GFP')
 tit=strsplit(matlist(iii).name,'_');
@@ -171,8 +176,8 @@ title(char(tit(2)));
  figure(3)
 h_mean_TOM(iii)=subplot(colplots(2),colplots(1),iii);
 % h_mean_TOM(iii)
-plot(mean(profi(:,:,5)))
- axis([0 25 0 3000])
+plot(TOMmean)
+ axis([0 25 0 4000])
   xlabel('Time')
 ylabel('TOM')
 tit=strsplit(matlist(iii).name,'_');
